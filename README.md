@@ -1,7 +1,8 @@
-# Unveiling the Covers' Impacts On Media Products
+# Unveiling the Covers' Impacts on Media Products
 
 *Learning and Mining from the Amazon Data*
 
+*Group Members: [Siyuan Li](mailto:siyuan.li@epfl.ch), [Yuanfei Mai](mailto:yuanfei.mai@epfl.ch), [Wanhao Zhou](mailto:wanhao.zhou@epfl.ch)*
 
 # Abstract
 Here is a well-known motto -- *don't judge a book by its cover*. However, human does like pretty things, which seems paradoxical to the motto. Which is the truth in reality? In this project, the Amazon dataset is a nice material to back up our research since it contains the data of the cover features and crucial comments. We limit our research scope to the following products: books, movies (including TV) and music, namely media products. We are going to analyse the relations between the cover features and their sales, reviews and ratings. We hope to draw some conclusions based on our analysis, which might be helpful to producers and customers.
