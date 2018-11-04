@@ -21,13 +21,13 @@ Also, we are considering a complementary dataset to the Amazon Review Dataset, c
 # A list of internal milestones up until project milestone 2
 Before the milestone 2, we first need to have a clean and useful dataset. Additionally, the blueprint for the analysis steps should be drafted.
 
-Jobs related to the dataset: 
+Jobs related to the dataset (until **Nov 11**): 
 1. Obtain the dataset(s) we need described in the section above.
 2. Examine the dataset(s), and read relevant papers to figure out which subset of data are useful.
 3. Extract the useful data, clean the redundant information and format the data based on the goals.
 4. For visual features of the data, examine the utility of the current version. Extract alternative visual features from original images using other neural networks if needed.
 
-Jobs related to the analysis:
+Jobs related to the analysis (until **Nov 25**):
  1. Read relevant papers of tasks performed on the dataset(s) to get familiar with the dataset(s)
  2. Formulate methods to model the users' behaviour/attitude
     based on the reviews (maybe including answers).
