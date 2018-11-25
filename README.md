@@ -67,8 +67,8 @@ No impossible values in overall rates were found.
 	- Based on the rating distribution of each product, we found out reviews whose ratings were out of the corresponding rating distribution confidence interval (80% for instance). For those out of the confidence interval range, we labeled them as 1 meaning potential suspicious candidates and 0 otherwise.
 
 
-# Proposed approaches to our research questions
-Typically, we hope to address the problem from two aspects. 
+# Proposed approaches to our research questions until milestone 3
+Typically, we hope to address the problem from two aspects. We are going to implement the following methods in the process of milestone 3.
 
 **First**, we hope to choose features based on common sense to identify such reviewers and reviews. This applies to **content-based product**,For example, we can choose the rating of a certain product as a feature.  A reviewer can be suspicious of malicious attack if he gives a low rating but majority gives high.  
 
