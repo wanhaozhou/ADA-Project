@@ -93,9 +93,6 @@ where ![$$\mathbb{E}_k\[\mathbb{P}(c_i, v_{jk})\] = \mathbb{P}(c_i)\frac{\displa
 
 
 
-# A list of internal milestones up until project milestone 3
-Before the milestone 3, 
-
 # Questions for TA
 ~~1. Would you please offer us any advice on how to identify a product's quality regardless of the cover, i.e. the quality itself of the product, not the cover? Are there any datasets describing this attribute?~~
 
