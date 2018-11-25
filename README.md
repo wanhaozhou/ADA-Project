@@ -28,8 +28,12 @@ We divide the whole data according to categories. We view these categories as tw
 We would like to experiment with the typical data of these two subcategories. Our project so far is based on the following data (both reviews and the product metadata):
 - Movies and TV (content-based)
 	- In addition, we make use of [IMDB ratings](https://datasets.imdbws.com/) to give us a relative objective rating for movies and TV.
+		- IMDB is an online database of information related to films, television programs, home videos and video games, and internet streams, including cast, production crew and personnel biographies, plot summaries, trivia, and fan reviews and ratings.
+		- We find that usually content-based product has a very good feature: most of them have other rating database. These ratings are created by those truly love movies or books. Their ratings are more objective than a commercial website. But there also exist bias on those datasets. But in our assumption, we consider these bias much smaller than Amazon data.
+		- Based on above assumption, then we can use those relatively objective database to verify the validity of our approach to detect fake reviews, at least biased reviews. The concept of this test is: if we remove those fake reviews (detected by our analysis). The rating distribution of Amazon movies should be similar like IMDB data.
 - Clothing, Shoes and Jewellery (brand-based)
 - Home and Kitchen (brand based)
+
 
 # Data wrangling and analysis in milestone 2
 The following wrangling and analysis are applied to the dataset:
