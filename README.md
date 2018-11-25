@@ -62,5 +62,7 @@ Before the milestone 3,
 
 # Questions for TA
 ~~1. Would you please offer us any advice on how to identify a product's quality regardless of the cover, i.e. the quality itself of the product, not the cover? Are there any datasets describing this attribute?~~
+
 ~~2. Since this is a primitive plan of the project, can we change the steps or add the data that is not included in this report in the course of the project?~~
+
 ~~3. Marked in bold in the dataset section described above, can we put the missing (but maybe useful) data on the cluster for later use?~~
