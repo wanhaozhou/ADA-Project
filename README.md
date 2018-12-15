@@ -1,105 +1,87 @@
-# Spotting fake reviews in Amazon review data
-
-Learning and Mining from the Amazon Data
+# Spotting Spam Reviewers in Amazon Review Data
 
 Group Members: [Siyuan Li](mailto:siyuan.li@epfl.ch), [Yuanfei Mai](mailto:yuanfei.mai@epfl.ch), [Wanhao Zhou](mailto:wanhao.zhou@epfl.ch)
 
 # Abstract
-With the rapid growth of online reviews, it has become a common practice for people to read reviews for many purposes. This gives rise to review spam, i.e., writing fake reviews to mislead readers by giving bogus positive or negative opinions to some target products to promote them or to damage their reputations. Our task is to find those reviewers who write fake reviews. The problem can be seen as a classification problem but obtaining training data by manually labelling reviews is very hard. In this project, we hope to study the unusual behaviours of reviewers who are of suspect spam reviewers. We make the following assumptions to support our analysis. Firstly, we assume that the majority of reviewers are normal reviewers. Secondly, we assume that there exists statistical difference between spam reviewers and normal reviewers. 
-We hope to address the problem from two aspects. First, we hope to choose features based on common sense to identify such reviewers and reviews. Second, we would like to use statistical models to find the useful features that can distinct the unusual patterns from majority.
+
+With the rapid growth of online reviews, it has become a common practice for people to read reviews for many purposes. This gives rise to review spam, i.e., writing fake reviews to mislead readers by giving bogus positive or negative opinions to some target products to promote them or to damage their reputations. Our task is to find those reviewers who write fake reviews. The problem can be seen as a classification problem but obtaining training data by manually labeling reviews is very hard. In this project, we hope to study the unusual behaviors of reviewers who are of suspect spam reviewers. We make the following assumptions to support our analysis. Firstly, we assume that the majority of reviewers are normal reviewers. Secondly, we assume that there exists statistical difference between spam reviewers and normal reviewers.
+
+We hope to address the problem in two ways. First, we would like to use statistical models to find the useful features that can distinguish the unusual patterns of spam reviewers from the majority. Second, we are going to define features based on abnormal behaviors of spammers to identify fake reviewers and fake reviews by unsupervised learning.
 
 # Research questions
-Based on above assumptions, our task is clear: detect those highly suspicious reviewers by finding unusual statistical patterns that are distinct from normal patterns. In other ways, spotting outlier. 
 
-Questions are as follows:
+The major problem in our project is: How to spot fake reviews on Amazon and who are suspicious reviewers that write fake reviews on Amazon in unsupervised manner?
 
-1. How to spot fake reviews on Amazon and who are suspicious reviewers that write fake reviews on Amazon.
-2. Given such fake reviews and suspicious reviewers, who are the "greedy" sellers (brands) that hired those fake reviewers.
-3. Based on statistical rules, give some basic tricks to spot a fake review. Apply our rules to other categories on Amazon to distinguish between fake reviews.
-
-
+To approach the problem, we consider the following questions:
+1.  What is the rating pattern of spam reviewers and how does this pattern deviates from that of the normal users?
+2.  What  features could be designed to tell spam users from normal users apart?
 
 # Dataset
-Generally, our project is based on the [Amazon Review Dataset](http://jmcauley.ucsd.edu/data/amazon/) . The dataset consists of product reviews and metadata from Amazon, including 142.8 million reviews spanning May 1996 - July 2014. 
-We divide the whole data according to categories. We view these categories as two major types: **content-based product** and **brand-based product**.
-- Content-based product: this refers to products like books, movies and TV, video games, etc. In this subcategory of product, people are more interested in the content of the product,. The brand itself, if any, does not matter much to the customer.
-- Brand-based product: this refers to products like clothes, home appliances, etc. Customers attitudes towards such products have something to do with the brands, e.g., some customers might be loyal to certain brands.
 
-We would like to experiment with the typical data of these two subcategories. Our project so far is based on the following data (both reviews and the product metadata):
-- Movies and TV (content-based)
-	- In addition, we make use of [IMDB ratings](https://datasets.imdbws.com/) to give us a relative objective rating for movies and TV.
-		- IMDB is an online database of information related to films, television programs, home videos and video games, and internet streams, including cast, production crew and personnel biographies, plot summaries, trivia, and fan reviews and ratings.
-		- We find that usually content-based product has a very good feature: most of them have other rating database. These ratings are created by those truly love movies or books. Their ratings are more objective than a commercial website. But there also exist bias on those datasets. But in our assumption, we consider these bias much smaller than Amazon data.
-		- Based on above assumption, then we can use those relatively objective database to verify the validity of our approach to detect fake reviews, at least biased reviews. The concept of this test is: if we remove those fake reviews (detected by our analysis). The rating distribution of Amazon movies should be similar like IMDB data.
-- Clothing, Shoes and Jewellery (brand-based)
-- Home and Kitchen (brand based)
+Generally, our project is based on the [Amazon Review Dataset](http://jmcauley.ucsd.edu/data/amazon/) . The dataset consists of product reviews and metadata from Amazon, including 142.8 million reviews spanning May 1996 - July 2014.
 
+In order to avoid tons of workload, we would like to experiment with the selected categories data as follows (contains both reviews and the product metadata):
 
-# Data wrangling and analysis in milestone 2
-The following wrangling and analysis are applied to the dataset:
-- Amazon Dataset Selection: Categories and Size
-	- We chose two kinds of products that have different rules to find out the fake reviews. Basically, one category contains products that have brands, namely brands-based products. Another one contains those without brands, namely content-based products. 
-	- In our research, those products and users that have only few reviews can not help us to find out the regulation of fake reviews therefore we only chose the dataset in which each of the reviewers and products have at least 5 reviews, called 5-core dataset.
+- Home and Kitchen: 5-core, 551,682 reviews
+- Clothing, Shoes and Jewellery: 5-core, 278,677 reviews
 
-- Data Initial Observation And Cleaning
-	- In reviews data, there are several features that we found useful in our further study like reviewerID, asin (products ID),helpful(reviews helpfulness), overall(rate given out by reiewers), unixReviewTime, reviewTime(the time of the reviews come out). Noted that the content in 'helpful' column should be transformed into numerical values.
-	- In metadata, the features like asin, brand, title seems useful. Noted that there are some missing values in brand that need further processing in 'brand' column.
+For review data:
+- reviewerID  - ID of the reviewer, e.g.  [A2SUAM1J3GNN3B](http://www.amazon.com/gp/cdp/member-reviews/A2SUAM1J3GNN3B)
+-   asin  - ID of the product, e.g.  [0000013714](http://www.amazon.com/dp/0000013714)
+-   reviewerName  - name of the reviewer
+-   helpful  - helpfulness rating of the review, e.g. 2/3
+-   reviewText  - text of the review
+-   overall  - rating of the product
+-   summary  - summary of the review
+-   unixReviewTime  - time of the review (unix time)
+-   reviewTime  - time of the review (raw)
 
-- Search for missing values in brand column
-	- After calculation of the portion of the NaN in brand column, brand-based products have lower portion of NaN compared with content-based products. That's why we utilize the brand features to find out the suspicious reviewers on brand-based products, but utilize overall features (overall rating) on content-based products.
+For product metadata:
+-   asin  - ID of the product, e.g.  [0000031852](http://www.amazon.com/dp/0000031852)
+-   title  - name of the product
+-   price  - price in US dollars (at time of crawl)
+-   imUrl  - url of the product image
+-   related  - related products (also bought, also viewed, bought together, buy after viewing)
+-   salesRank  - sales rank information
+-   brand  - brand name
+-   categories  - list of categories the product belongs to
 
-- Search for impossible values : Check the range of its columns values
-No impossible values in overall rates were found.
+# Methodology
 
-- Features Extraction: extracted the useful features we mentioned above
+Based on the above assumptions, our task comprises of several parts:
 
-- Data Deeper Observation
-	- Distribution of number of the reviews of the products
-		- Among these three categories, most of the products have fewer than 20 reviews.
-	- Distribution of number of the reviews of the users
-		- Among these three categories, most of the users have fewer than 20 reviews.
-	- Distribution of ratings of the item that have largest number of reviews
-		- Among these three categories, the distributions of the reviews for the popular products look similar - most of the reviews gave out 5 stars rates.
-	- Distribution of ratings from the users that wrote the largest number of reviews
-		- Among these three categories, the distributions of the reviews from various users vary a lot from person to person.
+**First**, we detect those highly suspicious reviewers by finding unusual statistical patterns that could be distinguished from normal patterns. For example, a reviewer can be suspicious of malicious attack if he gives a low rating but majority gives high.
 
-- Data Enrichment
-	- Based on the rating distribution of each product, we found out reviews whose ratings were out of the corresponding rating distribution confidence interval (80% for instance). For those out of the confidence interval range, we labeled them as 1 meaning potential suspicious candidates and 0 otherwise.
+We formulate the problem as follows:
 
+- Given a product's overall reviews, if a reviewer's rating deviates too much from other customers' reviews, then this reviewer will be considered as suspicious.
+- The extent of deviation is measured by conditional probability and joint probability. Detailed mathematical formulas are included in the report.
+- Rank the reviewers according to the deviation. The reviewers who are in the top rank are in highly suspicious.
 
-# Proposed approaches to our research questions until milestone 3
-Typically, we hope to address the problem from two aspects. We are going to implement the following methods in the process of milestone 3.
-
-**First**, we hope to choose features based on common sense to identify such reviewers and reviews. This applies to **content-based product**,For example, we can choose the rating of a certain product as a feature.  A reviewer can be suspicious of malicious attack if he gives a low rating but majority gives high.  
-
-We formulate the problem as follows: 
-
-- Given a product's overall reviews, if a reviewer's rating deviates too much from other customers' reviews, then this review will be considered as suspicious.
-- If the majority of a reviewer's reviews are considered suspicious in this sense, then this reviewer will be seen as a spam reviewer candidate.
-- Also, we consider using IMDB ratings to give us a more objective rating of the products. This also helps us to identify such reviews and reviewers based on the rules above.
-- How to measure the deviation and the majority to which content need us to find out with close inspection of data.
-
-**Second**, we would like to use statistical models to find the useful features that can distinct the unusual patterns from majority. This applies to **brand-based product**, since ratings like IMDB are usually absent and we would like to make use of the rich information of the brand.
-
-We formulate the problem as follows[1]:
-- Given a review data record, which contains attributes (e.g. reviewer id, brand, product id, etc.), denoted as ![A_j](https://latex.codecogs.com/gif.latex?A_j) and a rating for the product (![c_i](https://latex.codecogs.com/gif.latex?c_i)), we would like to find the statistical pattern under the data.
-- We hypothesise first that the attributes and the rating are independent, i.e. ![P(c_i) = P(c_i|A_j)](https://latex.codecogs.com/gif.latex?P%28c_i%29%20=%20P%28c_i%7CA_j%29). Then we calculate the **confidence unexpectedness (cu)** and **support unexpectedness (su)** for each rating class.
-	- confidence unexpectedness: let's say ![$v_{jk}$](https://latex.codecogs.com/gif.latex?v_%7Bjk%7D) is a possible value of the attribute ![$j$](https://latex.codecogs.com/gif.latex?j): ![$A_j$](https://latex.codecogs.com/gif.latex?A_j), the cu is defined as how ![$v_{jk}$](https://latex.codecogs.com/gif.latex?v_%7Bjk%7D) leads to a possible rating class ![$c_i$](https://latex.codecogs.com/gif.latex?c_i), 
-i.e. ![$$cu(v_{jk} \to c_i) = \frac{\mathbb{P}(c_i|v_{jk}) - \mathbb{E}_k\[\mathbb{P}(c_i|v_{jk})\]}{\mathbb{E}_k\[\mathbb{P}(c_i|v_{jk})\]}$$](https://latex.codecogs.com/gif.latex?$$cu%28v_%7Bjk%7D%20%5Cto%20c_i%29%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D%28c_i%7Cv_%7Bjk%7D%29%20-%20%5Cmathbb%7BE%7D_k%5B%5Cmathbb%7BP%7D%28c_i%7Cv_%7Bjk%7D%29%5D%7D%7B%5Cmathbb%7BE%7D_k%5B%5Cmathbb%7BP%7D%28c_i%7Cv_%7Bjk%7D%29%5D%7D$$)
-where under the aforementioned independence hypothesis, ![$$\mathbb{E}_k\[\mathbb{P}(c_i|v_{jk})\] = \mathbb{P}(c_i)$$](https://latex.codecogs.com/gif.latex?$$%5Cmathbb%7BE%7D_k%5B%5Cmathbb%7BP%7D%28c_i%7Cv_%7Bjk%7D%29%5D%20=%20%5Cmathbb%7BP%7D%28c_i%29$$)
-Intuitively, this rule could be used to suspect users who give high/low ratings on a particular brand.
-	- support unexpectedness: similarly, su considers the unexpectedness in joint probability. 
-![$$su(v_{jk} \to c_i) = \frac{\mathbb{P}(c_i, v_{jk}) - \mathbb{E}_k\[\mathbb{P}(c_i, v_{jk})\]}{\mathbb{E}_k\[\mathbb{P}(c_i, v_{jk})\]}$$](https://latex.codecogs.com/gif.latex?$$su%28v_%7Bjk%7D%20%5Cto%20c_i%29%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D%28c_i,%20v_%7Bjk%7D%29%20-%20%5Cmathbb%7BE%7D_k%5B%5Cmathbb%7BP%7D%28c_i,%20v_%7Bjk%7D%29%5D%7D%7B%5Cmathbb%7BE%7D_k%5B%5Cmathbb%7BP%7D%28c_i,%20v_%7Bjk%7D%29%5D%7D$$) 
-where ![$$\mathbb{E}_k\[\mathbb{P}(c_i, v_{jk})\] = \mathbb{P}(c_i)\frac{\displaystyle\sum_{l=1}^{|A_j|} \mathbb{P}(v_{jl})}{|A_j|}$$](https://latex.codecogs.com/gif.latex?$$%5Cmathbb%7BE%7D_k%5B%5Cmathbb%7BP%7D%28c_i,%20v_%7Bjk%7D%29%5D%20=%20%5Cmathbb%7BP%7D%28c_i%29%5Cfrac%7B%5Cdisplaystyle%5Csum_%7Bl=1%7D%5E%7B%7CA_j%7C%7D%20%5Cmathbb%7BP%7D%28v_%7Bjl%7D%29%7D%7B%7CA_j%7C%7D$$) Intuitively, this rule could be used to suspect users whose reviews concentrate on a small range of brands.
+**Second**, we would like to exploit more intrinsic features in the data and apply the unsupervised clustering algorithm to classify between spam and normal reviewers, as well as real and fake reviews . 
+We first utilize the behaviors of potential spam reviewers detected by statistical rules in the first part, and design the corresponding naive features. Additionally, we manage to incorporate other features described in [1].
+[1]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf)
 
 
-[1]: We follow the ideas in this paper: https://www.cs.uic.edu/~liub/publications/CIKM-final-unexpected.pdf
+We formulate the problem as follows:
 
+- We design the following features. Detailed mathematical formulas and explanations are included in the report.
+	- reviewers features: 
+		- Review Text Similarity
+		- Maximal Number of Reviews Per Day
+		- Review Interval
+		- First Reviewer Frequency
+	- reviews features:
+		- Review Repetition
+		- Rating Bias
+		- Extreme Rating
+		- Early Post
+- We utilize the K-means and Gaussian Mixture Model  cluster reviewers and reviews.
 
+# Contributions of group members:
 
-# Questions for TA
-~~1. Would you please offer us any advice on how to identify a product's quality regardless of the cover, i.e. the quality itself of the product, not the cover? Are there any datasets describing this attribute?~~
+Siyuan Li: coming up with algorithm; coding up the first method; results of method1 analysis
 
-~~2. Since this is a primitive plan of the project, can we change the steps or add the data that is not included in this report in the course of the project?~~
+Wanhao Zhou: coming up with algorithm; coding up the second method; results of method2 analysis
 
-~~3. Marked in bold in the dataset section described above, can we put the missing (but maybe useful) data on the cluster for later use?~~
+Yuanfei Mai: writing up the report; detailing the readme content; presenting the poster
