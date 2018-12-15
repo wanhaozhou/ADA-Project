@@ -34,8 +34,8 @@ In order to avoid tons of workload, we would like to experiment with the selecte
 For practical use, we use the 5-core data, which is a subset of the data in which all users and items have at least 5 reviews.
 
 Review data:
-- reviewerID  - ID of the reviewer, e.g.  [A2SUAM1J3GNN3B](http://www.amazon.com/gp/cdp/member-reviews/A2SUAM1J3GNN3B)
--   asin  - ID of the product, e.g.  [0000013714](http://www.amazon.com/dp/0000013714)
+- reviewerID  - ID of the reviewer, e.g.  A2SUAM1J3GNN3B
+-   asin  - ID of the product, e.g.  0000013714
 -   reviewerName  - name of the reviewer
 -   helpful  - helpfulness rating of the review, e.g. 2/3
 -   reviewText  - text of the review
@@ -45,7 +45,7 @@ Review data:
 -   reviewTime  - time of the review (raw)
 
 Product metadata:
--   asin  - ID of the product, e.g.  [0000031852](http://www.amazon.com/dp/0000031852)
+-   asin  - ID of the product, e.g.  0000031852
 -   title  - name of the product
 -   price  - price in US dollars (at time of crawl)
 -   imUrl  - url of the product image
