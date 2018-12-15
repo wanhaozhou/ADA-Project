@@ -59,8 +59,8 @@ We formulate the problem as follows:
 - Rank the reviewers according to the deviation. The reviewers who are in the top rank are in highly suspicious.
 
 **Second**, we would like to exploit more intrinsic features in the data and apply the unsupervised clustering algorithm to classify between spam and normal reviewers, as well as real and fake reviews . 
-We first utilize the behaviors of potential spam reviewers detected by statistical rules in the first part, and design the corresponding naive features. Additionally, we manage to incorporate other features described in [1].
-[1]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf)
+We first utilize the behaviors of potential spam reviewers detected by statistical rules in the first part, and design the corresponding naive features. Additionally, we manage to incorporate other features described in [^1].
+[^1]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf
 
 
 We formulate the problem as follows:
