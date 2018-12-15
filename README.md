@@ -4,7 +4,9 @@ Group Members: [Siyuan Li](mailto:siyuan.li@epfl.ch), [Yuanfei Mai](mailto:yuanf
 
 # Abstract
 
-With the rapid growth of online reviews, it has become a common practice for people to read reviews for many purposes. This gives rise to review spam, i.e., writing fake reviews to mislead readers by giving bogus positive or negative opinions to some target products to promote them or to damage their reputations. Our task is to find those reviewers who write fake reviews. The problem can be seen as a classification problem but obtaining training data by manually labeling reviews is very hard. In this project, we hope to study the unusual behaviors of reviewers who are of suspect spam reviewers. We make the following assumptions to support our analysis. Firstly, we assume that the majority of reviewers are normal reviewers. Secondly, we assume that there exists statistical difference between spam reviewers and normal reviewers.
+With the rapid growth of online reviews, it has become a common practice for people to read reviews for many purposes. This gives rise to review spam, i.e., writing fake reviews to mislead readers by giving bogus positive or negative opinions to some target products to promote them or to damage their reputations. **Our task is to find those reviewers who write fake reviews.** The problem can be seen as a classification problem but obtaining training data by manually labeling reviews is hard. In this project, we hope to study the unusual behaviors of reviewers who are of suspect spam reviewers. 
+
+We make the following assumptions to support our analysis. First, we assume that the majority of reviewers are normal reviewers. Second, we assume that there exists statistical difference between spam reviewers and normal reviewers.
 
 We hope to address the problem in two ways. First, we would like to use statistical models to find the useful features that can distinguish the unusual patterns of spam reviewers from the majority. Second, we are going to define features based on abnormal behaviors of spammers to identify fake reviewers and fake reviews by unsupervised learning.
 
@@ -22,10 +24,16 @@ Generally, our project is based on the [Amazon Review Dataset](http://jmcauley.u
 
 In order to avoid tons of workload, we would like to experiment with the selected categories data as follows (contains both reviews and the product metadata):
 
-- Home and Kitchen: 5-core, 551,682 reviews
-- Clothing, Shoes and Jewellery: 5-core, 278,677 reviews
+- Home and Kitchen: 
+	- Review data: 5-core, 551,682 reviews
+	- Metadata: 436,988 products
+- Clothing, Shoes and Jewellery: 
+	- Review data: 5-core, 278,677 reviews
+	- Metadata: 1,503,384 products
 
-For review data:
+For practical use, we use the 5-core data, which is a subset of the data in which all users and items have at least 5 reviews.
+
+Review data:
 - reviewerID  - ID of the reviewer, e.g.  [A2SUAM1J3GNN3B](http://www.amazon.com/gp/cdp/member-reviews/A2SUAM1J3GNN3B)
 -   asin  - ID of the product, e.g.  [0000013714](http://www.amazon.com/dp/0000013714)
 -   reviewerName  - name of the reviewer
@@ -36,7 +44,7 @@ For review data:
 -   unixReviewTime  - time of the review (unix time)
 -   reviewTime  - time of the review (raw)
 
-For product metadata:
+Product metadata:
 -   asin  - ID of the product, e.g.  [0000031852](http://www.amazon.com/dp/0000031852)
 -   title  - name of the product
 -   price  - price in US dollars (at time of crawl)
