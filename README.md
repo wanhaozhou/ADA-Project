@@ -83,7 +83,7 @@ We formulate the problem as follows:
 		- Early Post (EP)
 - We utilize the K-means and Gaussian Mixture Model to cluster reviewers and reviews.
 
-# Contributions of group members:
+# Contributions of group members
 
 Siyuan Li: coming up with algorithm; coding up the first method; results of method1 analysis
 
