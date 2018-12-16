@@ -18,8 +18,6 @@ Here is a typical example of fake reviews [1]:
 
 "High Points: Guacamole burger was quite tall; clam chowder was tasty. The decor was pretty good, but not worth the downsides. Low Points: Noisy, noisy, noisy. The appetizers weren't very good at all. And the service kind of lagged. A cross between Las Vegas and Disney world, but on the cheesy side. This Cafe is a place where you eat inside a plastic rain forest. The walls are lined with fake trees, plants, and wildlife, including animatronic animals. A flowing waterfall makes sure that you won't hear the conversations of your neighbors without yelling. I could see it being fun for a child's birthday party (there were several that occurred during our meal), but not a place to go if you're looking for a good meal."
 
-[1]: [Opinion Spam Detection: Detecting Fake Reviews and Reviewers](https://www.cs.uic.edu/~liub/FBS/fake-reviews.html)
-
 In this example, we can see that human inspection of reviews might be impossible since fake reviews are bewildering enough.
 
 To approach the problem, we consider the following questions:
@@ -27,6 +25,9 @@ To approach the problem, we consider the following questions:
 1.  What is the rating pattern of spam reviewers and how does this pattern deviates from that of the normal users?
 
 2.  What  features could be designed to tell spam users from normal users apart?
+
+
+[1]: [Opinion Spam Detection: Detecting Fake Reviews and Reviewers](https://www.cs.uic.edu/~liub/FBS/fake-reviews.html)
 
 # Dataset
 
@@ -98,8 +99,6 @@ We formulate the problem as follows:
 
 We first utilize the behaviors of potential spam reviewers detected by statistical rules in the first part, and design the corresponding naive features. Additionally, we manage to incorporate other features described in [2].
 
-[2]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf
-
 We formulate the problem as follows:
 
 - We design the following features. Detailed mathematical formulas and explanations are included in the report.
@@ -125,6 +124,8 @@ We formulate the problem as follows:
 	- Early Post (EP)
 
 - We utilize the K-means and Gaussian Mixture Model to cluster reviewers and reviews.
+
+[2]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf
 
 # Contributions of group members
 
