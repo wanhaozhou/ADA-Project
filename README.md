@@ -71,17 +71,17 @@ We first utilize the behaviors of potential spam reviewers detected by statistic
 We formulate the problem as follows:
 
 - We design the following features. Detailed mathematical formulas and explanations are included in the report.
-	- reviewers features: 
-		- Review Text Similarity
-		- Maximal Number of Reviews Per Day
-		- Review Interval
-		- First Reviewer Frequency
-	- reviews features:
-		- Review Repetition
-		- Rating Bias
-		- Extreme Rating
-		- Early Post
-- We utilize the K-means and Gaussian Mixture Model  cluster reviewers and reviews.
+	- Reviewer Features: 
+		- Review Text Similarity (RTS)
+		- Maximal Number of Reviews Per Day (MNR)
+		- Review Interval (RI)
+		- First Reviewer Frequency (FRF)
+	- Review Features:
+		- Review Repetition (RR)
+		- Rating Bias (RB)
+		- Extreme Rating (ER)
+		- Early Post (EP)
+- We utilize the K-means and Gaussian Mixture Model to cluster reviewers and reviews.
 
 # Contributions of group members:
 
