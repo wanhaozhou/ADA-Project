@@ -125,7 +125,7 @@ We formulate the problem as follows:
 
 - We utilize the K-means and Gaussian Mixture Model to cluster reviewers and reviews.
 
-[2]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf
+[2]: [Spotting Opinion Spammers using Behavioral Footprints](https://www.cs.uic.edu/~liub/publications/KDD-2013-Arjun-spam.pdf)
 
 # Contributions of group members
 
