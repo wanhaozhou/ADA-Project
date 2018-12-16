@@ -22,14 +22,11 @@ To approach the problem, we consider the following questions:
 
 Generally, our project is based on the [Amazon Review Dataset](http://jmcauley.ucsd.edu/data/amazon/) . The dataset consists of product reviews and metadata from Amazon, including 142.8 million reviews spanning May 1996 - July 2014.
 
-In order to avoid tons of workload, we would like to experiment with the selected categories data as follows (contains both reviews and the product metadata):
+In order to avoid tons of workload, we would like to experiment with the selected category data as follows (contains both reviews and the product metadata):
 
 - Home and Kitchen: 
 	- Review data: 5-core, 551,682 reviews
 	- Metadata: 436,988 products
-- Clothing, Shoes and Jewellery: 
-	- Review data: 5-core, 278,677 reviews
-	- Metadata: 1,503,384 products
 
 For practical use, we use the 5-core data, which is a subset of the data in which all users and items have at least 5 reviews.
 
